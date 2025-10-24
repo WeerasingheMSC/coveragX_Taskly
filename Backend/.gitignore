@@ -1,8 +1,5 @@
 node_modules/
-<<<<<<< HEAD
 
 .env
-=======
 .env.example
->>>>>>> b5def2ac79b80372566e755994eaef916019d7e7
 coverage/
