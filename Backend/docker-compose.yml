@@ -1,0 +1,33 @@
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: taskly
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./src/migrations:/migrations
+    # no 'ports' section here — DB will be reachable only inside the Docker network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      retries: 5
+
+  backend:
+    build: .
+    env_file:
+      - .env.example
+    environment:
+      # backend connects to 'db' by service name on container network; keep container port 5432
+      DATABASE_URL: postgres://postgres:postgres@db:5432/taskly
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "4000:4000"
+    command: >
+      /bin/sh -c "node src/migrate.js && node src/server.js"
+
+volumes:
+  db_data:
