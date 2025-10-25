@@ -129,7 +129,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ onSubmit }) => {
             }
           }}
         >
-          Add Task
+          Add
         </Button>
       </Box>
     </Paper>
