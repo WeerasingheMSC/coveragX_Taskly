@@ -20,7 +20,7 @@ const MainScreen: React.FC = () => {
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
-        py: 4
+        py: 6
       }}
     >
       {/* Header */}
@@ -66,6 +66,8 @@ const MainScreen: React.FC = () => {
             backgroundColor: 'rgba(255, 255, 255, 0.6)',
             borderRadius: 2,
             p: 3,
+            mt: 5,
+            minHeight: '70vh',
             backdropFilter: 'blur(10px)'
           }}
         >
@@ -97,6 +99,7 @@ const MainScreen: React.FC = () => {
             />
           </Box>
         </Box>
+        
       </Container>
     </Box>
   );
