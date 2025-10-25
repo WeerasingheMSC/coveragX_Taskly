@@ -14,7 +14,7 @@ Follow these steps to set up and run the project:
 2. **Create a new folder** on your local machine and open Command Prompt (CMD) inside it.
 3. **Clone the repository** by running the following command:
    ```sh
-   git clone <https://github.com/WeerasingheMSC/coveragX_Taskly.git>
+   git clone <repository-link>
    ```
 4. **Navigate to the project folder**:
    ```sh
@@ -37,4 +37,4 @@ Follow these steps to set up and run the project:
   docker-compose down
   ```
 
-Enjoy using the Full Stack To-Do App!
+Enjoy using the Taskly App!
