@@ -50,6 +50,7 @@ const TaskCard: React.FC<TaskCardProps> = ({ task, onMarkDone }) => {
   return (
     <>
       <Card 
+        data-testid="task-card"
         sx={{ 
           mb: 2,
           backgroundColor: '#f5f5f5',
