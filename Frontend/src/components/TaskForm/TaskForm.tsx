@@ -61,7 +61,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ onSubmit }) => {
           backgroundColor: 'rgba(255, 255, 255, 0.95)',
           borderRadius: 2,
           width: '100%',
-          maxWidth: 400
+          maxWidth: 500,
         }}
       >
         <Typography 
@@ -103,6 +103,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ onSubmit }) => {
             disabled={submitting}
             sx={{ 
               mb: 2,
+              mt: 2,
               backgroundColor: 'white',
               '& .MuiOutlinedInput-root': {
                 '& fieldset': {
@@ -131,6 +132,16 @@ const TaskForm: React.FC<TaskFormProps> = ({ onSubmit }) => {
               }
             }}
           />
+          <Snackbar
+        open={success}
+        autoHideDuration={3000}
+        onClose={() => setSuccess(false)}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+      >
+        <Alert severity="success" onClose={() => setSuccess(false)}>
+          Task added successfully!
+        </Alert>
+      </Snackbar>
 
           <Button
             fullWidth
@@ -144,6 +155,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ onSubmit }) => {
               textTransform: 'none',
               fontSize: '1rem',
               fontWeight: 600,
+              mt: 5,
               '&:hover': {
                 backgroundColor: '#1976D2',
               },
@@ -158,16 +170,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ onSubmit }) => {
         </Box>
       </Paper>
 
-      <Snackbar
-        open={success}
-        autoHideDuration={3000}
-        onClose={() => setSuccess(false)}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-      >
-        <Alert severity="success" onClose={() => setSuccess(false)}>
-          Task added successfully!
-        </Alert>
-      </Snackbar>
+      
     </>
   );
 };
