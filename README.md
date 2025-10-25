@@ -26,7 +26,7 @@ Follow these steps to set up and run the project:
    ```
 6. **Access the application** by opening the following URL in your browser:
    ```
-   http://localhost:5173/
+   http://localhost:5173
    ```
 
 ### Additional Notes
