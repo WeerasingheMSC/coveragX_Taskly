@@ -41,8 +41,8 @@ export const useTasks = () => {
     try {
       setError(null);
       await taskApi.markTaskAsDone(taskId);
-      // Remove task from list after marking as done
-      setTasks(prevTasks => prevTasks.filter(task => task.id !== taskId));
+      // Fetch tasks again to get the next task (6th task becomes visible)
+      await fetchTasks();
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to mark task as done');
       console.error('Error marking task as done:', err);

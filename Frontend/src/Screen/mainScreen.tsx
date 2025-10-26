@@ -1,5 +1,5 @@
-import React from 'react';
-import { Box, Container, Typography } from '@mui/material';
+import React, { useState } from 'react';
+import { Box, Container, Typography, Snackbar, Alert } from '@mui/material';
 import TaskForm from '../components/TaskForm/TaskForm';
 import TaskList from '../components/TaskList/TaskList';
 import { useTasks } from '../hooks/useTasks';
@@ -11,6 +11,23 @@ import { useTasks } from '../hooks/useTasks';
  */
 const MainScreen: React.FC = () => {
   const { tasks, loading, addTask, markTaskAsDone } = useTasks();
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
+
+  const handleMarkDone = async (taskId: number) => {
+    try {
+      await markTaskAsDone(taskId);
+      setSnackbarMessage('Task marked as done successfully!');
+      setSnackbarOpen(true);
+    } catch (error) {
+      setSnackbarMessage('Failed to mark task as done');
+      setSnackbarOpen(true);
+    }
+  };
+
+  const handleCloseSnackbar = () => {
+    setSnackbarOpen(false);
+  };
 
   return (
     <Box
@@ -95,12 +112,28 @@ const MainScreen: React.FC = () => {
             <TaskList 
               tasks={tasks} 
               loading={loading}
-              onMarkDone={markTaskAsDone}
+              onMarkDone={handleMarkDone}
             />
           </Box>
         </Box>
         
       </Container>
+
+      {/* Snackbar for task done notification */}
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={3000}
+        onClose={handleCloseSnackbar}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+      >
+        <Alert 
+          onClose={handleCloseSnackbar} 
+          severity="success" 
+          sx={{ width: '100%' }}
+        >
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
     </Box>
   );
 };
