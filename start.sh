@@ -1,26 +1,17 @@
-#!/bin/bash
+#!/bin/sh
 set -e
 
 echo "🚀 Starting CoveragX Taskly deployment..."
 
-# Install backend dependencies
-echo "📦 Installing backend dependencies..."
-cd Backend
-npm ci --omit=dev
+# Check if node is available
+if ! command -v node > /dev/null 2>&1; then
+    echo "❌ Node.js not found!"
+    exit 1
+fi
 
-# Install frontend dependencies
-echo "📦 Installing frontend dependencies..."
-cd ../Frontend
-npm ci
+echo "✓ Node.js version: $(node --version)"
 
-# Build frontend with TypeScript + Vite
-echo "🏗️ Building frontend (TypeScript + Vite)..."
-npm run build
-
-# Copy frontend build to backend public folder (optional)
-echo "📁 Frontend built successfully in Frontend/dist"
-
-# Start the backend server
+# Start backend (dependencies should already be installed)
 echo "🚀 Starting backend server on port ${PORT:-3000}..."
-cd ../Backend
-npm start
+cd Backend
+exec npm start

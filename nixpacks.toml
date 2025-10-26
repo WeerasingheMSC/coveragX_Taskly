@@ -1,0 +1,39 @@
+[phases.setup]
+nixPkgs = ["nodejs_18"]
+
+[phases.install]
+cmds = [
+  "cd Frontend && npm ci",
+  "cd ../Backend && npm ci --omit=dev"
+]
+
+[phases.build]
+cmds = [
+  "cd Frontend && npm run build"
+]
+
+[start]
+cmd = "sh start.sh"
+```
+
+**Key changes:**
+- Move `npm ci` to the **install phase** (not start phase)
+- Move `npm run build` to the **build phase** (not start phase)
+- Only run `npm start` in the **start phase**
+
+---
+
+## My Strong Recommendation:
+
+**Use Solution 1** - Deploy as two separate services:
+
+### Backend Service Configuration:
+```
+Root Directory: Backend
+Start Command: npm start
+```
+
+### Frontend Service Configuration:
+```
+Root Directory: Frontend
+(Railway auto-detects Vite build)
