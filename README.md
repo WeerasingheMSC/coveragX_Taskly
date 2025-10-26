@@ -18,7 +18,7 @@ Follow these steps to set up and run the project:
    ```
 4. **Navigate to the project folder**:
    ```sh
-   cd fullStackToDOApp
+   cd coveragX_Taskly
    ```
 5. **Run the application using Docker Compose**:
    ```sh
